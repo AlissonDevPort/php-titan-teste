@@ -1,0 +1,15 @@
+{
+    "name": "aliss/table-php",
+    "autoload": {
+        "psr-4": {
+            "Aliss\\TablePhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alisson",
+            "email": "alissonktt@hotmail.com"
+        }
+    ],
+    "require": {}
+}
