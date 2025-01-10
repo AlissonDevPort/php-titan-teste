@@ -21,6 +21,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 
 ### **Funcionalidades Principais:**
 - Exibição de funcionários em uma tabela simples interativa.
+- Exportação da tabela para PDF.
 - Exibição de bonificação na tabela.
 - Adição, edição e exclusão de funcionários.
 - Notificações de sucesso/erro/informações usando o próprio alert.
@@ -52,7 +53,7 @@ Atualize o arquivo src/config/database.php com as credenciais do banco de dados
 Passo 4: Iniciar a aplicação
 Após a instalação das dependências, inicie a aplicação:
 ```bash
-php -S localhost:8000
+php -S localhost:8000 -t public
 ```
 
 ## **Imagens da Aplicação**
@@ -62,6 +63,9 @@ php -S localhost:8000
 
 ### Tela Principal
 ![Tela Principal](src/assets/Tabela.png)
+
+### Tela do PDF
+![Tela do PDF](src/assets/PDF.png)
 
 ### Adicionando um Novo Funcionário
 ![Adicionar Funcionario](src/assets/Funcionario.jpg)
