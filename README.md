@@ -5,11 +5,11 @@ Este projeto é um sistema de gerenciamento de funcionários que permite listar,
 ## 📋 Funcionalidades
 
 - Listar funcionários com detalhes como nome, CPF, RG, e-mail, empresa, data de cadastro e salário.
+- Suporte para exportar tabela de funcionarios para PDF.
 - Cadastrar novos funcionários vinculados a empresas.
 - Editar informações de funcionários existentes.
 - Excluir funcionários.
 - Autenticação de usuários com login e logout.
-- Suporte para múltiplas empresas.
 
 ## 🚀 Pré-requisitos
 
