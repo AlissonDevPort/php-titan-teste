@@ -10,6 +10,18 @@ class Funcionario {
     }
 
 
+    // public function listarFuncionarios() {
+    //     $query = "SELECT f.*, e.nome AS empresa 
+    //               FROM tbl_funcionario f 
+    //               INNER JOIN tbl_empresa e ON f.id_empresa = e.id_empresa
+    //               ORDER BY f.nome ASC";
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->execute();
+
+    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // }
+
+
     public function listarFuncionarios() {
         $query = "SELECT f.*, e.nome AS empresa 
                   FROM tbl_funcionario f 
@@ -17,10 +29,38 @@ class Funcionario {
                   ORDER BY f.nome ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        $funcionarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        foreach ($funcionarios as &$funcionario) {
+            $dataCadastro = new DateTime($funcionario['data_cadastro']);
+            $dataAtual = new DateTime();
+            $tempoEmpresa = $dataCadastro->diff($dataAtual)->y;
+    
+            $novaBonificacao = 0;
+            if ($tempoEmpresa > 5) {
+                $novaBonificacao = 0.2; 
+            } elseif ($tempoEmpresa > 1) {
+                $novaBonificacao = 0.1; 
+            }
+    
+            if ($funcionario['bonificacao'] != $novaBonificacao) {
+                $funcionario['bonificacao'] = $novaBonificacao;
+    
+                $updateQuery = "UPDATE tbl_funcionario 
+                                SET bonificacao = :bonificacao 
+                                WHERE id_funcionario = :id_funcionario";
+                $updateStmt = $this->conn->prepare($updateQuery);
+                $updateStmt->bindParam(':bonificacao', $novaBonificacao);
+                $updateStmt->bindParam(':id_funcionario', $funcionario['id_funcionario']);
+                $updateStmt->execute();
+            }
+            $funcionario['salario_com_bonificacao'] = $funcionario['salario'] * (1 + $funcionario['bonificacao']);
+        }
+    
+        return $funcionarios;
     }
-
+    
 
     public function criarFuncionario($nome, $cpf, $rg, $email, $id_empresa, $salario, $data_cadastro) {
         $query = "INSERT INTO tbl_funcionario (nome, cpf, rg, email, id_empresa, salario, data_cadastro) 

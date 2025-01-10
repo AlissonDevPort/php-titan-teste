@@ -120,10 +120,14 @@
         <input type="text" name="nome" value="<?php echo isset($funcionario) ? $funcionario['nome'] : ''; ?>" required>
 
         <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" value="<?php echo isset($funcionario) ? $funcionario['cpf'] : ''; ?>" required>
+        <input type="text" name="cpf" value="<?php echo isset($funcionario) ? $funcionario['cpf'] : ''; ?>" required
+        minlength="11" 
+        maxlength="11">
 
         <label for="rg">RG:</label>
-        <input type="text" name="rg" value="<?php echo isset($funcionario) ? $funcionario['rg'] : ''; ?>">
+        <input type="text" name="rg" value="<?php echo isset($funcionario) ? $funcionario['rg'] : ''; ?>"
+        maxlength="9"
+        minlength="9">
 
         <label for="email">E-mail:</label>
         <input type="email" name="email" value="<?php echo isset($funcionario) ? $funcionario['email'] : ''; ?>" required>
@@ -144,4 +148,5 @@
         <a href="?controller=funcionario&action=listar" class="button-return">Retornar</a>
     </form>
 </body>
+
 </html>

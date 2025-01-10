@@ -152,8 +152,19 @@
             align-items: flex-start;
         }
     }
+    .blue-row {
+        background-color: #ADD8E6;
+    }
+
+    .red-row {
+        background-color: #FFCCCC; 
+    }
 
     </style>
+    <?php
+    require_once '../src/utils/formatar_cpf.php';
+    require_once '../src/utils/formatar_rg.php';
+    ?>
 </head>
 <body>
 <header class="main-header">
@@ -189,11 +200,20 @@
             </tr>
         <?php else: ?>
             <?php foreach ($funcionarios as $funcionario): ?>
-            <tr>
+            <?php
+                $rowClass = '';
+                if ($funcionario['bonificacao'] == 0.1) {
+                    $rowClass = 'blue-row'; 
+                } elseif ($funcionario['bonificacao'] == 0.2) {
+                    $rowClass = 'red-row'; 
+                }
+               
+            ?>
+            <tr class="<?= $rowClass ?>">
                 <td><?php echo $funcionario['id_funcionario']; ?></td>
                 <td><?php echo $funcionario['nome']; ?></td>
-                <td><?php echo $funcionario['cpf']; ?></td>
-                <td><?php echo $funcionario['rg']; ?></td>
+                <td><?php echo formatarCPF($funcionario['cpf']); ?></td>
+                <td><?php echo formatarRG($funcionario['rg']); ?></td>
                 <td><?php echo $funcionario['email']; ?></td>
                 <td><?php echo $funcionario['empresa']; ?></td>
                 <td><?= date('d/m/Y', strtotime($funcionario['data_cadastro'])) ?></td>

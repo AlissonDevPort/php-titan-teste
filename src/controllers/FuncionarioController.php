@@ -1,7 +1,6 @@
 <?php
 require_once '../src/models/Funcionario.php';
 require_once '../src/models/Empresa.php';
-
 class FuncionarioController {
 
    
