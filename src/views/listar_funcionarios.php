@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Funcionários</title>
     <style>
+
     body {
         background: linear-gradient(135deg, #6a11cb, #2575fc);
         height: 100vh;
@@ -159,22 +160,40 @@
     .red-row {
         background-color: #FFCCCC; 
     }
+    .export-button-container{
+        width: 100%;
+
+    }
+    #exportButton {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #exportButton:hover {
+        background-color: #0056b3;
+    }
 
     </style>
     <?php
     require_once '../src/utils/formatar_cpf.php';
     require_once '../src/utils/formatar_rg.php';
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
 <header class="main-header">
     <h1 class="header-title">Titan</h1>
         <div class="header-links">
+        <button id="exportButton">Exportar para PDF</button>
             <a href="?controller=login&action=logout" class="logout">Sair</a>
         </div>
     </header>
-    <div>
-        <div class="table-container">
+<div>
+    <div class="table-container">
         <div class="actions-btns">
             <a href="?controller=funcionario&action=cadastrar" class="header-link">Cadastrar Funcionário</a>
             <a href="?controller=empresa&action=cadastrar" class="header-link">Cadastrar Empresa</a>
@@ -228,9 +247,41 @@
     </tbody>
 </table>
 
-    </div>     
     </div>
-    <!-- <a href="?controller=funcionario&action=exportarPdf">Exportar para PDF</a> -->
+</div>
 </body>
+<script>
+    document.getElementById("exportButton").addEventListener("click", function() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        const table = document.querySelector("table");
+        const rows = [];
+        
+        const headers = [];
+        const headerCells = table.querySelectorAll("thead th");
+        headerCells.forEach(cell => {
+            headers.push(cell.innerText);
+        });
+        rows.push(headers);
+
+        const dataRows = table.querySelectorAll("tbody tr");
+        dataRows.forEach(row => {
+            const rowData = [];
+            const cells = row.querySelectorAll("td");
+            
+            for (let i = 0; i < cells.length - 1; i++) {
+                rowData.push(cells[i].innerText);
+            }
+            rows.push(rowData);
+        });
+
+        doc.autoTable({
+            head: [headers.slice(0, -1)], 
+            body: rows.slice(1), 
+        });
+        doc.save("tabela_funcionarios.pdf");
+    });
+</script>
 </html>
 
