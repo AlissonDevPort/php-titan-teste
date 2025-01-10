@@ -117,20 +117,25 @@
         <?php endif; ?>
 
         <label for="nome">Nome:</label>
-        <input type="text" name="nome" value="<?php echo isset($funcionario) ? $funcionario['nome'] : ''; ?>" required>
+        <input type="text" name="nome" value="<?php echo isset($funcionario) ? $funcionario['nome'] : ''; ?>" required
+        placeholder="Ex:João Silva"
+        >
 
         <label for="cpf">CPF:</label>
         <input type="text" name="cpf" value="<?php echo isset($funcionario) ? $funcionario['cpf'] : ''; ?>" required
+        placeholder="Ex:12345678910"
         minlength="11" 
         maxlength="11">
 
         <label for="rg">RG:</label>
         <input type="text" name="rg" value="<?php echo isset($funcionario) ? $funcionario['rg'] : ''; ?>"
+        placeholder="Ex:123456789"
         maxlength="9"
         minlength="9">
 
         <label for="email">E-mail:</label>
-        <input type="email" name="email" value="<?php echo isset($funcionario) ? $funcionario['email'] : ''; ?>" required>
+        <input type="email" name="email" value="<?php echo isset($funcionario) ? $funcionario['email'] : ''; ?>" required
+        placeholder="Ex:teste@hotmail.com">
 
         <label for="id_empresa">Empresa:</label>
         <select name="id_empresa" required>
@@ -142,7 +147,8 @@
         </select>
 
         <label for="salario">Salário:</label>
-        <input type="text" name="salario" value="<?php echo isset($funcionario) ? $funcionario['salario'] : ''; ?>">
+        <input type="text" name="salario" value="<?php echo isset($funcionario) ? $funcionario['salario'] : ''; ?>"
+        placeholder="Ex:2000">
 
         <button type="submit"><?php echo isset($funcionario) ? 'Atualizar' : 'Salvar'; ?></button>
         <a href="?controller=funcionario&action=listar" class="button-return">Retornar</a>

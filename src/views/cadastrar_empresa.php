@@ -115,7 +115,8 @@
     <form action="?controller=empresa&action=salvar" method="POST">
         <h1>Cadastrar Empresa</h1>
         <label for="nome">Nome da Empresa:</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" name="nome" required
+        placeholder="Ex:Salgados LTDA">
         <br><br>
         <button type="submit">Cadastrar</button>
         <a href="?controller=funcionario&action=listar" class="button-return">Retornar</a>

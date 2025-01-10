@@ -94,10 +94,12 @@
     <form action="?controller=login&action=autenticar" method="POST">
         <h1>Login</h1>
         <label for="login">E-mail:</label>
-        <input type="email" id="login" name="login" required>
+        <input type="email" id="login" name="login" required
+        placeholder="Ex:teste@gmail.com">
         <br><br>
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
+        <input type="password" id="senha" name="senha" required
+        placeholder="Ex:1234">
         <br><br>
         <button type="submit">Entrar</button>
     </form>
