@@ -21,6 +21,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 
 ### **Funcionalidades Principais:**
 - Exibição de funcionários em uma tabela simples interativa.
+- Exibição de bonificação na tabela.
 - Adição, edição e exclusão de funcionários.
 - Notificações de sucesso/erro/informações usando o próprio alert.
 
@@ -60,7 +61,7 @@ php -S localhost:8000
 ![Tela De Login](src/assets/Login.jpg)
 
 ### Tela Principal
-![Tela Principal](src/assets/Tabela.jpg)
+![Tela Principal](src/assets/Tabela.png)
 
 ### Adicionando um Novo Funcionário
 ![Adicionar Funcionario](src/assets/Funcionario.jpg)
